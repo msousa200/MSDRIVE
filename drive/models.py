@@ -1,20 +1,18 @@
-from django.contrib.auth.models import User
 from django.db import models
+
+from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class Folder(models.Model):
     name = models.CharField(max_length=255)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subfolders')
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
 
 class File(models.Model):
-    file = models.FileField(upload_to='files/')
     name = models.CharField(max_length=255)
-    folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='files')
+    file = models.FileField(upload_to='files/')
+    folder = models.ForeignKey(Folder, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
 

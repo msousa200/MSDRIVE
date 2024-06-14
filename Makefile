@@ -1,10 +1,10 @@
-Make run:
-	python manage.py runserver
+install:
+    pip install -r requirements.txt
 
-Make migrate:
-	python manage.py migrate
+migrate:
+    python manage.py migrate
 
-Make migrations:
-	python manage.py makemigrations
+run:
+    docker-compose up
 
 
