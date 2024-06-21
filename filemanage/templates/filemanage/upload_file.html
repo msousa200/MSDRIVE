@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Create Directory{% endblock %}
+{% block title %}Upload File{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'drive/css/style.css' %}">
@@ -9,21 +9,15 @@
 
 {% block content %}
 <div class="container">
-    <h2>Create Directory</h2>
-    <form method="post">
+    <h2>Upload File</h2>
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
-            {{ form.name.label_tag }}
-            {{ form.name }}
+            {{ form.file.label_tag }}
+            {{ form.file }}
         </div>
-        <button type="submit">Create</button>
+        <button type="submit">Upload</button>
     </form>
     <p><a href="{% url 'file_list' %}">Back to Files</a></p>
 </div>
 {% endblock %}
-
-
-
-
-
-

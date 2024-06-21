@@ -1,1 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}MS-DRIVE{% endblock %}</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"> 
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="navbar-brand">MS-DRIVE</span>
+            {% if request.user.is_authenticated %}
+            <ul>
+                <li>
+                    <a class="nav-link" aria-current="page" href="{% url 'file_list' %}">File List</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'upload_file' %}">Upload File</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'create_directory' %}">Create Directory</a>
+                </li>
+            </ul>
+            {% else %}
+            {% endif %}
+        </div>
+        <div class="nav-right">
+            {% if request.user.is_authenticated %}
+                <span class="me-2">Bem-vindo: {{ request.user.username }}</span>
+                <form action="{% url 'logout' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+                </form>
+            </div>
+            {% else %}
+            <ul>
+                <li>
+                    <a class="nav-link" aria-current="page" href="{% url 'login' %}">Login</a>
+                </li>
+                <li>
+                    <a class="nav-link" aria-current="page" href="{% url 'register' %}">Register</a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
 

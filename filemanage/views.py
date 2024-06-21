@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Document, Directory
 from .forms import DocumentForm, DirectoryForm
+from django.utils import timezone
+from django.http import HttpResponse
 
 @login_required
 def file_list(request, directory_id=None):
@@ -19,6 +21,7 @@ def file_list(request, directory_id=None):
         'current_directory': current_directory,
     })
 
+
 @login_required
 def upload_file(request):
     if request.method == 'POST':
@@ -26,12 +29,16 @@ def upload_file(request):
         if form.is_valid():
             document = form.save(commit=False)
             document.owner = request.user
-            document.uploaded_at = timezone.now()  # Adicionando a data de upload
+            document.uploaded_at = timezone.now()
             document.save()
-            return redirect('file_list_directory', directory_id=document.directory.id)
+            if document.directory:
+                return redirect('file_list_with_directory', directory_id=document.directory.id)
+            else:
+                return redirect('file_list')
     else:
         form = DocumentForm()
-    return render(request, 'filemanage/upload.html', {'form': form})
+    return render(request, 'filemanage/upload_file.html', {'form': form})
+
 
 @login_required
 def create_directory(request):
@@ -53,3 +60,9 @@ def download_file(request, file_id):
     response['Content-Disposition'] = f'attachment; filename="{document.file.name}"'
     return response
 
+@login_required
+def download_folder(request, folder_id):
+    folder = get_object_or_404(Directory, id=folder_id, owner=request.user)
+    response = HttpResponse(content_type='application/zip')
+    response['Content-Disposition'] = f'attachment; filename="{folder.name}.zip"'
+    return response

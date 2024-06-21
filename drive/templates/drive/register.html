@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'drive/css/style.css' %}">
-</head>
-<body>
-    <div class="container">
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'drive/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="register-form">
         <h2>Register</h2>
         <form method="post">
             {% csrf_token %}
@@ -26,10 +29,15 @@
                 {{ form.password2.label_tag }}
                 {{ form.password2 }}
             </div>
-            <button type="submit">Confirm</button>
+            <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
+
+
+
+
+
 
 

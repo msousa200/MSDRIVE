@@ -1,22 +1,64 @@
+body, h1, h2, h3, h4, h5, h6, ul {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f7f7f7;
-    margin: 0;
-    padding: 0;
+    color: #333;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    height: 100vh;
-    color: #333;
-    justify-content: center;
+    padding: 15px;
+    background-color: #181818;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
-.logo {
-    margin-bottom: 20px;
+.nav-left , .nav-left ul{
+
+    display: flex;
+    flex-direction: row;
+    width: 550px;
+    align-items: center;
+    align-content: center;
+    list-style-type: none;
 }
 
-.logo img {
-    max-height: 100px; /* Ajuste a altura do logotipo conforme necessário */
+.navbar .nav-left span,
+.navbar .nav-left a,
+.navbar .nav-right span,
+.navbar .nav-right a,
+.nav-right li {
+    color: white;
+    text-decoration: none;
+    list-style-type: none;
+    margin-right: 15px;
+    margin-left:15px;
+}
+
+.navbar .nav-left a:hover,
+.navbar .nav-right a:hover {
+    text-decoration: underline;
+}
+
+.navbar-brand{
+    width: 45%;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    max-height: fit-content;
 }
 
 .container {
@@ -28,6 +70,8 @@ body {
     max-width: 350px;
     width: 100%;
     text-align: center;
+    margin-top: 300px;
+    max-height: fit-content;
 }
 
 h2 {
@@ -50,6 +94,7 @@ form .form-group label {
     display: block;
     margin-bottom: 5px;
     color: #444;
+    margin-top: 5px;
 }
 
 form .form-group input {
@@ -70,6 +115,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
+
 }
 
 button:hover {
@@ -84,3 +130,89 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
+
+
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.form-group input {
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    font-size: 15px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p a {
+    display: block;
+    text-align: center;
+    margin-top: 15px; 
+    text-decoration: none;
+    color: #007bff;
+    
+    
+}
+
+p{
+    font-weight: bold;
+}
+
+

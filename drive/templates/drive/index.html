@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>MS-Drive</title>
-</head>
-<body>
-    <h1>Bem-vindo ao MS-Drive</h1>
-    <p>Você está logado como {{ user.username }}.</p>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'drive/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome to MS-DRIVE</h2>
+    <p>This is the home page.</p>
+    <p><a href="{% url 'file_list' %}">View your files</a></p>
+</div>
+
+{% endblock %}
 
 
-</body>
-</html>
