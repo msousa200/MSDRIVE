@@ -12,16 +12,12 @@
     <h2>Create Directory</h2>
     <form method="post">
         {% csrf_token %}
-        <div class="form-group">
-            {{ form.name.label_tag }}
-            {{ form.name }}
-        </div>
+        {{ form.as_p }}
         <button type="submit">Create</button>
     </form>
-    <p><a href="{% url 'file_list' %}">Back to Files</a></p>
+    <a href="{% url 'file_list' %}">Back to Files</a>
 </div>
 {% endblock %}
-
 
 
 

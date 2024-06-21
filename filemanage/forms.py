@@ -10,3 +10,4 @@ class DirectoryForm(forms.ModelForm):
     class Meta:
         model = Directory
         fields = ('name', 'parent')
+

@@ -5,28 +5,28 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'drive/css/style.css' %}">
+
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <h2>My Files</h2>
-    <div class="folders">
-        <h3>Folders</h3>
+    <h3>Directories</h3>
+    <ul>
         {% for directory in directories %}
-        <div class="folder">
-            <div class="folder-name">{{ directory.name }}</div>
-            <a href="{% url 'download_folder' directory.id %}" class="btn">Download</a>
-        </div>
+        <li><a href="{% url 'file_list_directory' directory.id %}">{{ directory.name }}</a></li>
         {% endfor %}
-    </div>
-    <div class="files">
-        <h3>Files</h3>
+    </ul>
+    <h3>Files</h3>
+    <ul>
         {% for document in documents %}
-        <div class="file">
-            <div class="file-name">{{ document.file.name }}</div>
-            <a href="{% url 'download_file' document.id %}" class="btn">Download</a>
-        </div>
+        <li><a href="{% url 'download_file' document.id %}">{{ document.file.name }}</a></li>
         {% endfor %}
-    </div>
+    </ul>
+    {% if current_directory and current_directory.parent %}
+    <p><a href="{% url 'file_list_directory' current_directory.parent.id %}">Back</a></p>
+    {% endif %}
 </div>
 {% endblock %}
+
+
+
