@@ -7,5 +7,6 @@ urlpatterns = [
     path('files/<int:directory_id>/', views.file_list, name='file_list_directory'),
     path('create_directory/', views.create_directory, name='create_directory'),
     path('download/<int:file_id>/', views.download_file, name='download_file'),
-    path('download-folder/<int:folder_id>/', views.download_folder, name='download_folder')
+    path('delete_document/<int:document_id>/', views.delete_document, name='delete_document'),
+    path('delete_directory/<int:directory_id>/', views.delete_directory, name='delete_directory'),
 ]

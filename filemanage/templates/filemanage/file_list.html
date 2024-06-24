@@ -13,13 +13,26 @@
     <h3>Directories</h3>
     <ul>
         {% for directory in directories %}
-        <li><a href="{% url 'file_list_directory' directory.id %}">{{ directory.name }}</a></li>
+        <li>
+            <a href="{% url 'file_list_directory' directory.id %}">{{ directory.name }}</a>
+            <form action="{% url 'delete_directory' directory.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </li>
         {% endfor %}
     </ul>
     <h3>Files</h3>
     <ul>
         {% for document in documents %}
-        <li><a href="{% url 'download_file' document.id %}">{{ document.file.name }}</a></li>
+        <div class="file">
+            <div class="file-name">{{ document.file.name }}</div>
+            <a href="{% url 'download_file' document.id %}" class="btn">Download</a>
+            <form action="{% url 'delete_document' document.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
         {% endfor %}
     </ul>
     {% if current_directory and current_directory.parent %}

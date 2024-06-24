@@ -27,7 +27,7 @@ def file_list(request, directory_id=None):
 @login_required
 def upload_file(request):
     if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
+        form = DocumentForm(request.POST, request.FILES, owner=request.user)
         if form.is_valid():
             document = form.save(commit=False)
             document.owner = request.user
@@ -35,21 +35,23 @@ def upload_file(request):
             document.save()
             return redirect('file_list_directory', directory_id=document.directory.id)
     else:
-        form = DocumentForm()
+            form = DocumentForm(owner=request.user)
     return render(request, 'filemanage/upload_file.html', {'form': form})
+  
 
 @login_required
 def create_directory(request):
     if request.method == 'POST':
-        form = DirectoryForm(request.POST)
+        form = DirectoryForm(request.POST, owner=request.user)
         if form.is_valid():
             directory = form.save(commit=False)
             directory.owner = request.user
             directory.save()
             return redirect('file_list')
     else:
-        form = DirectoryForm()
+        form = DirectoryForm(owner=request.user)
     return render(request, 'filemanage/create_directory.html', {'form': form})
+
 
 @login_required
 def download_file(request, file_id):
@@ -59,8 +61,13 @@ def download_file(request, file_id):
     return response
 
 @login_required
-def download_folder(request, folder_id):
-    folder = get_object_or_404(Directory, id=folder_id, owner=request.user)
-    response = HttpResponse(folder.file, content_type='application/octet-stream')
-    response['Content-Disposition'] = f'attachment; filename="{folder.name}"'
-    return response
+def delete_document(request, document_id):
+    document = get_object_or_404(Document, id=document_id, owner=request.user)
+    document.delete()
+    return redirect('file_list')
+
+@login_required
+def delete_directory(request, directory_id):
+    directory = get_object_or_404(Directory, id=directory_id, owner=request.user)
+    directory.delete()
+    return redirect('file_list')
