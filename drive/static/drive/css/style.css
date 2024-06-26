@@ -15,6 +15,14 @@ h4{
     font-weight: bold;
 }
 
+.nav-buttons {
+    display: flex;  /* Alinha os itens em uma linha */
+    gap: 100px;  /* Espaçamento entre os botões */
+    padding: 0;  /* Remove padding do ul */
+}
+
+
+
 .navbar {
     display: flex;
     justify-content: space-between;
