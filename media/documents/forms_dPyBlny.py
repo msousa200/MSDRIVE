@@ -15,7 +15,6 @@ class DocumentForm(forms.ModelForm):
                 self.fields['directory'].queryset = Directory.objects.filter(owner=owner)
             else:
                 self.fields['directory'].queryset = Directory.objects.none()
-    
 
 class DirectoryForm(forms.ModelForm):
     class Meta:

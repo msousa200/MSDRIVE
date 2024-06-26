@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}File List{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'drive/css/style.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Directories</h3>
+    {% if directories %}
+    <ul>
+        {% for directory in directories %}
+        <li>
+            <a href="{% url 'file_list_directory' directory.id %}">{{ directory.name }}</a>
+            <form action="{% url 'delete_directory' directory.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No directories available.</p>
+    {% endif %}
+
+    <h3>Files</h3>
+    {% if documents %}
+    <ul>
+        {% for document in documents %}
+        <div class="file">
+            <div class="file-name">{{ document.file.name }}</div>
+            <a href="{% url 'download_file' document.id %}" class="btn">Download</a>
+            <form action="{% url 'delete_document' document.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No files available.</p>
+    {% endif %}
+
+    {% if current_directory and current_directory.parent %}
+    <p><a href="{% url 'file_list_directory' current_directory.parent.id %}">Back</a></p>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+
+

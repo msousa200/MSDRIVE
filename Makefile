@@ -5,6 +5,6 @@ migrate:
     python manage.py migrate
 
 run:
-    docker-compose up
+    docker compose up
 
 

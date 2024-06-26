@@ -8,10 +8,7 @@ from django.http import HttpResponse
 @login_required
 def file_list(request, directory_id=None):
     if directory_id:
-        try:
-            current_directory = Directory.objects.get(id=directory_id, owner=request.user)
-        except Directory.DoesNotExist:
-            return HttpResponse("No Directory matches the given query.", status=404)
+        current_directory = get_object_or_404(Directory, id=directory_id, owner=request.user)
         documents = Document.objects.filter(owner=request.user, directory=current_directory)
         directories = Directory.objects.filter(owner=request.user, parent=current_directory)
     else:
@@ -33,7 +30,7 @@ def upload_file(request):
             document.owner = request.user
             document.uploaded_at = timezone.now()  
             document.save()
-            return redirect('file_list_directory', directory_id=document.directory.id)
+            return redirect('file_list')
     else:
             form = DocumentForm(owner=request.user)
     return render(request, 'filemanage/upload_file.html', {'form': form})
@@ -46,6 +43,7 @@ def create_directory(request):
         if form.is_valid():
             directory = form.save(commit=False)
             directory.owner = request.user
+            directory.uploaded_at = timezone.now() 
             directory.save()
             return redirect('file_list')
     else:

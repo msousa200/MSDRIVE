@@ -1,15 +1,18 @@
 body, h1, h2, h3, h4, h5, h6, ul {
     margin: 0;
     padding: 0;
+    list-style-type: none;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+h3{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h4{
+    margin-top:30px;
+    font-size: 20px; 
+    font-weight: bold;
 }
 
 .navbar {
@@ -21,11 +24,10 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 98.4%;
 }
 
-.nav-left , .nav-left ul{
-
+.nav-left, .nav-left ul {
     display: flex;
     flex-direction: row;
     width: 550px;
@@ -43,7 +45,7 @@ body {
     text-decoration: none;
     list-style-type: none;
     margin-right: 15px;
-    margin-left:15px;
+    margin-left: 15px;
 }
 
 .navbar .nav-left a:hover,
@@ -51,7 +53,7 @@ body {
     text-decoration: underline;
 }
 
-.navbar-brand{
+.navbar-brand {
     width: 45%;
 }
 
@@ -63,14 +65,14 @@ body {
 
 .container {
     background-color: #fff;
-    padding: 25px;
+    padding: 75px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 350px;
+    border-radius: 24px; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+    max-width: 1050px; 
     width: 100%;
     text-align: center;
-    margin-top: 300px;
+    margin-top: 300px; 
     max-height: fit-content;
 }
 
@@ -115,7 +117,6 @@ button {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
-
 }
 
 button:hover {
@@ -141,9 +142,8 @@ body {
     justify-content: center;
     height: 100vh;
     background-color: #f7f7f7;
+    width: 100%;
 }
-
-
 
 h2 {
     margin-bottom: 20px;
@@ -207,25 +207,132 @@ p a {
     margin-top: 15px; 
     text-decoration: none;
     color: #007bff;
-    
-    
 }
 
-p{
+p {
     font-weight: bold;
 }
 
-/* drive/css/style.css */
-.btn-danger {
-    color: white;
-    background-color: red;
-    border: none;
-    padding: 5px 10px;
+.btn {
+    padding: 10px; 
+    font-size: 14px; 
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10px; 
+}
+
+.btn-download, .btn-danger {
+    padding: 8px 12px; 
+    font-size: 14px; 
+    background-color: #007bff; 
+    color: #fff; 
+    transition: background-color 0.3s ease; 
     cursor: pointer;
+    border: none; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    font-family: Arial, sans-serif;
+}
+
+.btn-back{
+    margin-top: 40px;
+}
+
+
+.btn-download {
+    background-color: #007bff; 
+    color: #fff; 
+    font-weight: bold; 
+    text-decoration: none; 
+    
+}
+
+.btn-download:hover {
+    background-color: #0056b3; 
+    text-decoration: none; 
+}
+
+.btn-danger {
+    
+    background-color: red;
+    color: white;
+    transition: background-color 0.3s ease; 
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none; 
 }
 
 .btn-danger:hover {
     background-color: darkred;
+    text-decoration: none; 
 }
 
 
+
+.subs {
+    margin-top: 40px;
+}
+
+.file-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.directory-list{
+    list-style-type: none;
+    padding: 0;
+}
+
+.directory-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; 
+}
+
+.directory-name {
+    flex: 1; 
+    margin-right: 120px; 
+}
+
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; 
+}
+
+.file-item:last-child {
+    border-bottom: none; 
+}
+
+.file-name {
+    flex: 1; 
+    margin-right: 10px; 
+}
+
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p a {
+    display: block;
+    text-align: center;
+    margin-top: 15px; 
+    text-decoration: none;
+    color: #007bff;
+}
+
+p {
+    font-weight: bold;
+
+}

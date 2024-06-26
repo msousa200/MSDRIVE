@@ -5,16 +5,16 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'drive/css/style.css' %}">
-
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <h3>Directories</h3>
-    <ul>
+    {% if directories %}
+    <ul class="directory-list">
         {% for directory in directories %}
-        <li>
-            <a href="{% url 'file_list_directory' directory.id %}">{{ directory.name }}</a>
+        <li class="directory-item"> 
+            <a class="directory-name" href="{% url 'file_list_directory' directory.id %}">{{ directory.name }}</a>
             <form action="{% url 'delete_directory' directory.id %}" method="post" style="display:inline;">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -22,24 +22,38 @@
         </li>
         {% endfor %}
     </ul>
-    <h3>Files</h3>
-    <ul>
+    {% else %}
+    <p>No directories available.</p>
+    {% endif %}
+
+    <h4>Files</h4>
+    {% if documents %}
+    <ul class="file-list">
         {% for document in documents %}
-        <div class="file">
-            <div class="file-name">{{ document.file.name }}</div>
-            <a href="{% url 'download_file' document.id %}" class="btn">Download</a>
-            <form action="{% url 'delete_document' document.id %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </div>
+        <li class="file-item">
+            <span class="file-name">{{ document.file.name }}</span>
+            <div class="button-group">
+                <a href="{% url 'download_file' document.id %}" class="btn btn-download">Download</a>
+                <form action="{% url 'delete_document' document.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </li>
         {% endfor %}
     </ul>
-    {% if current_directory and current_directory.parent %}
-    <p><a href="{% url 'file_list_directory' current_directory.parent.id %}">Back</a></p>
+    {% else %}
+    <p>No files available.</p>
+    {% endif %}
+
+    {% if current_directory %}
+        {% if current_directory.parent %}
+            <p class="btn-back"><a href="{% url 'file_list_directory' current_directory.parent.id %}">Back</a></p>
+        {% else %}
+            <p class="btn-back"><a href="{% url 'file_list' %}">Back</a></p>
+        {% endif %}
     {% endif %}
 </div>
 {% endblock %}
-
 
 
