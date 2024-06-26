@@ -50,7 +50,7 @@ O projeto MS-DRIVE é um sistema de gerenciamento de arquivos desenvolvido com D
 1. **Clone o Repositório**
 
     ```sh
-    git clone https://github.com/SEU_USUARIO/ms_drive.git
+    git clone https://github.com/msousa200/MSDRIVE
     cd ms_drive
     ```
 
