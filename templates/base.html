@@ -14,10 +14,10 @@
             {% if request.user.is_authenticated %}
                 <a href="{% url 'index' %}" class="navbar-brand">MS-DRIVE</a>
             {% else %}
-                <span class="navbar-brand">MS-DRIVE</span>
+                <span class="navbar-brand-1">MS-DRIVE</span>
             {% endif %}
             {% if request.user.is_authenticated %}
-            <ul>
+            <ul class="nav-links">
                 <li>
                     <a class="nav-link" aria-current="page" href="{% url 'file_list' %}">File List</a>
                 </li>
@@ -40,7 +40,7 @@
                 </form>
             </div>
             {% else %}
-            <ul>
+            <ul class="nav-links">
                 <li>
                     <a class="nav-link" aria-current="page" href="{% url 'login' %}">Login</a>
                 </li>

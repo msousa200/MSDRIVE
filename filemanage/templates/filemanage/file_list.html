@@ -8,7 +8,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="welcome">
+    <h2>Welcome to MS-DRIVE</h2>
+</div>
+
+<div class="container-1">
     <h3>Directories</h3>
     {% if directories %}
     <ul class="directory-list">
@@ -50,7 +54,7 @@
         {% if current_directory.parent %}
             <p class="btn-back"><a href="{% url 'file_list_directory' current_directory.parent.id %}">Back</a></p>
         {% else %}
-            <p class="btn-back"><a href="{% url 'file_list' %}">Back</a></p>
+            <p class="btn-back"><a href="{% url 'file_list' %}">Back</a></p> 
         {% endif %}
     {% endif %}
 </div>
