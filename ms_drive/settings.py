@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Local settings
 LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "file_list"
 LOGOUT_REDIRECT_URL = "login"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

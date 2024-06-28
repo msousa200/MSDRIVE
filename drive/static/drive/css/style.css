@@ -4,6 +4,12 @@ body, h1, h2, h3, h4, h5, h6, ul {
     list-style-type: none;
 }
 
+h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+}
+
 h3{
     font-size: 20px;
     font-weight: bold;
@@ -14,14 +20,6 @@ h4{
     font-size: 20px; 
     font-weight: bold;
 }
-
-.nav-buttons {
-    display: flex; 
-    gap: 100px;  
-    padding: 0;  
-}
-
-
 
 .navbar {
     display: flex;
@@ -85,11 +83,18 @@ h4{
     width: 45%;
 }
 
+.nav-buttons {
+    display: flex; 
+    gap: 100px;  
+    padding: 0;  
+}
+
 .nav-links {
     display: flex;
     align-items: center;
     list-style-type: none;
     margin-left: 50px;
+    font-weight: bold;
 }
 
 .nav-link {
@@ -97,6 +102,7 @@ h4{
     text-decoration: none;
     transition: transform 0.2s ease, font-size 0.2s ease; 
     font-size: 16px; 
+    padding: 10px 10px;
     
 }
 
@@ -116,9 +122,6 @@ h4{
     margin-top: 200px;
     text-align: center;
     font-size: 200px;
-  
-   
-    
 }
 
 .container {
@@ -151,14 +154,6 @@ h4{
      min-width: 100vh;
 }
     
-    
-
-h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
-    color: #333;
-}
-
 form {
     display: flex;
     flex-direction: column;
@@ -220,12 +215,6 @@ body {
     height: 100vh;
     background-color: #f7f7f7;
     width: 100%;
-}
-
-h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
-    color: #333;
 }
 
 form {
@@ -311,25 +300,33 @@ p {
     font-family: Arial, sans-serif;
 }
 
+.btn-back {
+    display: inline-block;
+    margin-top: 80px; 
+}
 
 .btn-back a {
-    display: inline-block;
-    padding: 10px 20px; 
-    background-color: #007bff; 
-    color: #fff; 
-    text-decoration: none; 
-    border-radius: 4px; 
+    display: flex; 
+    align-items: center; 
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 10px 20px;
     transition: background-color 0.3s ease;
-    margin-top: 80px;
 }
 
 .btn-back a:hover {
     background-color: #0056b3;
-    color: #fff; 
     text-decoration: none;
 }
 
-
+.btn-back svg {
+    margin-left: 5px; 
+    width: 16px; 
+    height: 16px; 
+    fill: #fff; 
+}
 
 .btn-download {
     background-color: #007bff; 
@@ -359,18 +356,19 @@ p {
     text-decoration: none; 
 }
 
-
-
-.subs {
+.subs{
     margin-top: 40px;
 }
-
 
 .file-list, .directory-list {
     list-style-type: none;
     padding: 0;
     margin: 0 auto; 
     width: 90%; 
+}
+
+.file-item:last-child {
+    border-bottom: none;
 }
 
 .directory-item, .file-item {
@@ -387,29 +385,6 @@ p {
     text-align: left; 
 }
 
-.file-item:last-child {
-    border-bottom: none;
-}
 
 
-a {
-    color: #007bff;
-    text-decoration: none;
-}
 
-a:hover {
-    text-decoration: underline;
-}
-
-p a {
-    display: block;
-    text-align: center;
-    margin-top: 15px; 
-    text-decoration: none;
-    color: #007bff;
-}
-
-p {
-    font-weight: bold;
-
-}

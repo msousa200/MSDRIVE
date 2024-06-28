@@ -5,10 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm  
 
-@login_required
-def index(request):
-    return render(request, 'drive/index.html')
-
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -17,7 +13,7 @@ def register(request):
             auth_login(request, user)
             if user.is_staff:
                 return redirect('/admin/')
-            return redirect('index')
+            return redirect('file_list')
     else:
         form = CustomUserCreationForm()
     return render(request, 'drive/register.html', {'form': form})
@@ -29,7 +25,7 @@ def login(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
-            return redirect('index')
+            return redirect('file_list')
         else:
             messages.error(request, 'Invalid username or password.')
     else:

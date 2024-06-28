@@ -27,7 +27,7 @@ O projeto MS-DRIVE é um sistema de gerenciamento de arquivos desenvolvido com D
   - **views.py**: Lógica das views para operações de upload, listagem, download e exclusão de arquivos.
   - **urls.py**: Configurações de roteamento para a aplicação de gerenciamento de arquivos.
 
-- **static/**: Arquivos estáticos como CSS, JavaScript e imagens.
+- **static/**: Arquivos estáticos como CSS e imagens.
   - **drive/css/style.css**: Estilos principais para a aplicação.
 
 ### Descrição das Funcionalidades
@@ -42,8 +42,9 @@ O projeto MS-DRIVE é um sistema de gerenciamento de arquivos desenvolvido com D
 ### Pré-requisitos
 
 - Python 3.x
-- Virtualenv
 - Make
+- Docker
+- Docker Compose
 
 ### Passos de Instalação
 
@@ -54,30 +55,23 @@ O projeto MS-DRIVE é um sistema de gerenciamento de arquivos desenvolvido com D
     cd ms_drive
     ```
 
-2. **Crie e Ative o Ambiente Virtual**
+2. **Instale as Dependências**
 
     ```sh
-    make venv
-    source venv/bin/activate
+    pip install -r requirements.txt
     ```
 
-3. **Instale as Dependências**
-
-    ```sh
-    make install
-    ```
-
-4. **Configure as Variáveis de Ambiente**
+3. **Configure as Variáveis de Ambiente**
 
     Crie um arquivo `.env` na raiz do projeto e configure as variáveis necessárias, como `SECRET_KEY` e configurações do banco de dados.
 
-5. **Aplique as Migrações**
+4. **Aplique as Migrações**
 
     ```sh
     make migrate
     ```
 
-6. **Execute o Servidor de Desenvolvimento**
+5. **Execute o Servidor de Desenvolvimento**
 
     ```sh
     make run
@@ -85,23 +79,33 @@ O projeto MS-DRIVE é um sistema de gerenciamento de arquivos desenvolvido com D
 
 ### Comandos do Makefile
 
-- **venv**: Cria o ambiente virtual.
 - **install**: Instala as dependências do projeto listadas em `requirements.txt`.
 - **migrate**: Aplica as migrações do banco de dados.
 - **run**: Executa o servidor de desenvolvimento.
+- **clean**: Remove arquivos compilados Python.
+
+### Comandos para Docker Compose
+
+Para rodar o projeto usando Docker Compose:
+
+1. **Iniciar os serviços:**
+    ```sh
+    docker compose up
+    ```
+
+2. **Parar os serviços:**
+    ```sh
+    docker compose down
+    ```
 
 ## Exemplo de Makefile
 
 ```makefile
-VENV := venv
-PYTHON := $(VENV)/bin/python
-PIP := $(VENV)/bin/pip
+PYTHON := python
+PIP := pip
 DJANGO_MANAGE := $(PYTHON) manage.py
 
-venv:
-    python3 -m venv $(VENV)
-
-install: venv
+install:
     $(PIP) install -r requirements.txt
 
 migrate: install
@@ -113,3 +117,9 @@ run: migrate
 clean:
     find . -name '*.pyc' -delete
     find . -name '__pycache__' -delete
+
+docker-up:
+    docker compose up
+
+docker-down:
+    docker compose down
