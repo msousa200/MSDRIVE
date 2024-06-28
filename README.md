@@ -98,28 +98,4 @@ Para rodar o projeto usando Docker Compose:
     docker compose down
     ```
 
-## Exemplo de Makefile
 
-```makefile
-PYTHON := python
-PIP := pip
-DJANGO_MANAGE := $(PYTHON) manage.py
-
-install:
-    $(PIP) install -r requirements.txt
-
-migrate: install
-    $(DJANGO_MANAGE) migrate
-
-run: migrate
-    $(DJANGO_MANAGE) runserver
-
-clean:
-    find . -name '*.pyc' -delete
-    find . -name '__pycache__' -delete
-
-docker-up:
-    docker compose up
-
-docker-down:
-    docker compose down
